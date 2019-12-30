@@ -1,0 +1,6 @@
+rm -rf node_modules
+npm install -production
+VERSION=$1
+BUCKET=$2
+zip $VERSION.zip index.js package.json node_modules/ -r
+aws s3 cp $VERSION.zip s3://$BUCKET/$VERSION.zip
